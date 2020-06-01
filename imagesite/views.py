@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from myapp.models import Category, Image
+from django.db.models.query_utils import Q
 
 
 def show_about(request):
@@ -40,5 +41,21 @@ def show_home_with_category(request, cid):
     }
     return render(request, "home.html", data)
 
-def home(request):
-    return redirect("/home")
+# def home(request):
+#     return redirect("/home")
+
+def search(request):
+    try:
+        search_query = request.GET['query']
+        selected_images = Image.objects.filter(Q(title__icontains = search_query) | Q(description__icontains = search_query))
+
+        all_categories = Category.objects.all()
+
+        data = {
+            'categories': all_categories,
+            'images': selected_images
+        }
+        return render(request, "home.html", data)
+    
+    except:
+        return redirect("/home")

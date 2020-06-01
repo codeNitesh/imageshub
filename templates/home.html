@@ -1,17 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Welcome to ImagesHub!</title>
-</head>
+{%include 'base.html' %}
 
 <body>
     {%include 'navbar.html' %}
@@ -20,12 +7,12 @@
         <div class="row mt-4">
             <div class="col-md-2">
                 <div class="list-group">
-                    <a href="/home" class="bg-light list-group-item list-group-item-action bg-light">
+                    <a href="/" class="bg-light list-group-item list-group-item-action bg-light">
                         All
                     </a>
 
                     {% for category in categories %}
-                    <a href="/home/category/{{category.pk}}"
+                    <a href="/category/{{category.pk}}"
                         class="list-group-item list-group-item-action">{{category.title}}</a>
                     {% endfor %}
 
